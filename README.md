@@ -73,6 +73,21 @@ The process is reversed when decoding:
 
 Simply open `index.html` in a modern web browser. No installation or dependencies required.
 
+## Size Considerations
+
+The conversion process increases the size of the message significantly:
+
+1. Each original character becomes two hex digits
+2. Each hex digit becomes one zero-width Unicode character
+3. Each zero-width character is 3 bytes in UTF-8 encoding
+
+This means each character in your original message will take up 6 bytes in the hidden form. For example:
+- A 500-byte message becomes ~3,000 bytes
+- A 1KB message becomes ~6KB
+- A 1MB message becomes ~6MB
+
+Keep this in mind when hiding large messages, especially if you plan to paste them into text fields that might have size limits.
+
 ## Security Note
 
 While this method can hide messages from casual observation, it should not be considered secure encryption. The hidden messages can be detected by anyone who knows to look for zero-width characters.
