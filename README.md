@@ -2,6 +2,8 @@
 
 A sleek, modern web application that allows you to hide secret messages within normal text using zero-width characters. Perfect for sharing hidden messages in plain sight.
 
+DEMO HERE:  https://prince77-7.github.io/text-zero-width/
+
 ![Dark Theme Interface](screenshot.png)
 
 ## Features
