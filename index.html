@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern zero-width text converter that lets you hide secret messages within normal text. Features a sleek dark theme, mobile responsiveness, and support for file operations.">
+    <title>Zero-Width Text Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <div class="theme-container">
+        <div class="container">
+            <header>
+                <h1>Zero-Width<span class="accent">Converter</span></h1>
+                <p class="subtitle">Hide messages in plain sight</p>
+            </header>
+
+            <div class="converter">
+                <div class="conversion-type">
+                    <label>Choose Operation:</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="conversionType" value="encode" checked>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">Hide Message</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="conversionType" value="decode">
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">Reveal Message</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="encodeSection" class="section">
+                    <div class="input-group">
+                        <label for="secretMessage">Secret Message</label>
+                        <div class="textarea-container">
+                            <div class="textarea-wrapper">
+                                <textarea id="secretMessage" placeholder="Enter the message you want to hide..."></textarea>
+                                <button class="paste-button" data-target="secretMessage" title="Paste">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="visible-message-group">
+                            <label for="visibleMessage">Visible Message <span class="optional">(optional)</span></label>
+                            <div class="textarea-container">
+                                <div class="textarea-wrapper">
+                                    <textarea id="visibleMessage" placeholder="Enter text that will be visible to everyone..."></textarea>
+                                    <button class="paste-button" data-target="visibleMessage" title="Paste">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="file-input">
+                            <label for="encodeFileInput" class="file-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                                Choose File
+                            </label>
+                            <input type="file" id="encodeFileInput" accept="*/*">
+                        </div>
+                    </div>
+                    <button id="encodeBtn" class="action-button">
+                        <span>Convert to Zero-Width</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </button>
+                </div>
+
+                <div id="decodeSection" class="section hidden">
+                    <div class="input-group">
+                        <label for="encodedMessage">Message to Decode</label>
+                        <div class="textarea-container">
+                            <div class="textarea-wrapper">
+                                <textarea id="encodedMessage" placeholder="Paste text containing hidden message..."></textarea>
+                                <button class="paste-button" data-target="encodedMessage" title="Paste">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="file-input">
+                            <label for="decodeFileInput" class="file-label">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+                                Choose File
+                            </label>
+                            <input type="file" id="decodeFileInput" accept="*/*">
+                        </div>
+                    </div>
+                    <button id="decodeBtn" class="action-button">
+                        <span>Extract Hidden Message</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </button>
+                </div>
+
+                <div class="output-section">
+                    <div class="output-group">
+                        <label for="output">Result</label>
+                        <div class="textarea-container">
+                            <div class="textarea-wrapper">
+                                <textarea id="output" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="output-controls">
+                        <button id="copy" class="secondary-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+                            <span>Copy</span>
+                        </button>
+                        <button id="download" class="secondary-button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            <span>Download</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="notification" class="notification"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
